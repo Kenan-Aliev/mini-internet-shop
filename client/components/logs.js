@@ -7,7 +7,12 @@ const Logs = () => {
   return (
     <div>
       {logsList.map((log) => {
-        return <div key={log.title}>{log.title}</div>
+        return (
+          <div key={log.log} className="flex justify-between border my-2 py-1">
+            <div>{log.log}</div>
+            <div>{log.time}</div>
+          </div>
+        )
       })}
     </div>
   )

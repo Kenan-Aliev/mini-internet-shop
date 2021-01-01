@@ -18,3 +18,13 @@ export const getLogs = () => {
     return axios('/api/v1/logs').then(({ data }) => dispatch({ type: 'SET_LOGS', logs: data }))
   }
 }
+
+export const postLogs=(log)=>{
+  const newLog={
+    time:new Date(),
+    log
+  }
+  console.log(newLog)
+  // eslint-disable-next-line no-unused-expressions
+  axios.post('/api/v1/logs' , {newLog})
+}

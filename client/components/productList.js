@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeSelection, addSelection, getRates, sortProducts } from '../redux/reducers/products'
+import {postLogs} from "../redux/reducers/logs";
 
 const ProductList = () => {
   const products = useSelector((s) => s.products.products)
@@ -19,7 +20,7 @@ const ProductList = () => {
   const button = useSelector((s) => s.products.button)
   return (
     <>
-      <select className="my-2 w-1/4" onChange={(e) => dispatch(sortProducts(e.target.value))}>
+      <select className="my-2 w-1/4" onChange={(e) => dispatch(sortProducts(e.target.value),postLogs(e.target.value))}>
         <option>Сортировка товаров</option>
         <option value="lowest">По убыванию</option>
         <option value="highest">По возрастанию</option>
@@ -38,7 +39,7 @@ const ProductList = () => {
                   <button
                     type="button"
                     className="border px-4 text-xl"
-                    onClick={() => dispatch(removeSelection(product.id))}
+                    onClick={() => dispatch(removeSelection(product.id), postLogs('REMOVE_SELECTION'))}
                   >
                     -
                   </button>
@@ -46,7 +47,7 @@ const ProductList = () => {
                   <button
                     type="button"
                     className="border px-4 text-xl"
-                    onClick={() => dispatch(addSelection(product.id))}
+                    onClick={() => dispatch(addSelection(product.id),postLogs('ADD_SELECTION'))}
                   >
                     +
                   </button>

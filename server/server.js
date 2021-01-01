@@ -13,8 +13,9 @@ import config from './config'
 import Html from '../client/html'
 // eslint-disable-next-line import/named
 import { getRates } from './controllers/rates'
-import { setLogs } from './controllers/logs'
-import {getLogs} from "./controllers/getLogs";
+// eslint-disable-next-line import/named
+import { setLogs,getLogs } from './controllers/logs'
+
 
 const Root = () => ''
 
@@ -50,7 +51,7 @@ middleware.forEach((it) => server.use(it))
 server.get('/api/v1/products', getProduct)
 server.get('/api/v1/rates', getRates)
 server.post('/api/v1/logs', setLogs)
-server.get('/api/v1/logs',getLogs)
+server.get('/api/v1/logs', getLogs)
 
 server.use('/api/', (req, res) => {
   res.status(404)

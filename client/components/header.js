@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Home from './home'
+import { postLogs } from '../redux/reducers/logs'
 
 const Header = ({ cart }) => {
   const dispatch = useDispatch()
@@ -25,7 +26,7 @@ const Header = ({ cart }) => {
                           key={btn}
                           type="button"
                           className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                          onClick={() => dispatch({ type: 'BUTTON', button: btn })}
+                          onClick={() => dispatch({ type: 'BUTTON', button: btn }, postLogs(btn))}
                         >
                           {btn}
                         </button>
@@ -46,14 +47,20 @@ const Header = ({ cart }) => {
                       </Link>
                       <Link
                         to="/cart"
-                        onClick={() => <Route exact path="/:cart" component={() => <Home />} />}
+                        onClick={() => {
+                          // eslint-disable-next-line no-unused-expressions
+                          ;<Route exact path="/:cart" component={() => <Home />} />
+                        }}
                         className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                       >
                         {`Корзина(${totalSelected})`}
                       </Link>
                       <Link
                         to="/logs"
-                        onClick={() => <Route exact path="/:cart" component={() => <Home />} />}
+                        onClick={() => {
+                          // eslint-disable-next-line no-unused-expressions
+                          ;<Route exact path="/:cart" component={() => <Home />} />
+                        }}
                         className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                       >
                         Логи
